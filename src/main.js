@@ -14,6 +14,21 @@ Vue.config.productionTip = false
 
 Vue.use(VueAxios,axios)
 
+import VueIdb from 'vue-idb'
+
+Vue.use(VueIdb)
+
+const idb = new VueIdb({
+  version: 1,
+  database: 'test',
+  schemas: [
+    { tests: 'id, title, created_at, updated_at' },
+  		{ posts: 'id, owner' }
+  ]
+})
+
+
+
 
 
 /* eslint-disable no-new */
@@ -21,6 +36,9 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  idb: idb,
+  render: h => h(App)
 })
+
 
